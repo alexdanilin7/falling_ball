@@ -1,4 +1,5 @@
 import pygame
+import random
 
 pygame.init()
 size = width, height = 800, 600
@@ -12,7 +13,7 @@ start_ball = False
 y_pos = 0
 v = 20
 fps = 60
-r=10
+radius=10
 
 while running:
 
@@ -23,10 +24,11 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             start_ball=True
             x, y_pos=event.pos
+            r, g, b = random.randint(0,255), random.randint(0,255), random.randint(0,255)
         #   pygame.draw.circle(screen, (255,255,255), event.pos, 10)
     screen.fill(pygame.Color("black"))
     if start_ball:
-        pygame.draw.circle(screen, (255,255,255), (int(x), int(y_pos)), r)
+        pygame.draw.circle(screen, (r,g,b), (int(x), int(y_pos)), radius)
         if y_pos<height-r:
             y_pos += v / fps
         else:
